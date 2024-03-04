@@ -1,0 +1,26 @@
+
+<div class="character-list-container">
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search by name" />
+      <button class="search-button" (click)="onSearch()">Search</button>
+    </div>
+  
+    <div class="character-list">
+      <div *ngFor="let vehicle of vehicles" class="character-item">
+        <a [routerLink]="['/vehicle', vehicle.url]" class="character-link">
+          <div class="character-info">
+            <span class="character-name">{{ vehicle.name }}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  
+    <div class="pagination">
+      <span (click)="onPageChange(currentPage - 1)" [style.color]="currentPage === 1 ? '#999' : '#a8ad20'"
+        [style.cursor]="currentPage === 1 ? 'not-allowed' : 'pointer'">Previous</span>
+      <span>{{ currentPage }}</span>
+      <span (click)="onPageChange(currentPage + 1)" [style.color]="vehicles.length === 0 ? '#999' : '#a8ad20'"
+        [style.cursor]="vehicles.length === 0 ? 'not-allowed' : 'pointer'">Next</span>
+    </div>
+  </div>
+  
